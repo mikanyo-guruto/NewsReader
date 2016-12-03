@@ -2,7 +2,7 @@
 
 ## 概要
 googleAPIを使用してニュースの一覧を取得する  
-googleのAPIを使ったニュースアプリ (http://news.google.com/news)  
+googleのAPIを使ったニュースアプリ (http://news.google.com/news)  
 googleAPI参考サイト:http://tomehachi.sakura.ne.jp/blog/archives/486  
 
 ## 機能
