@@ -1,8 +1,7 @@
 # NewsReader
-=============
+
 ## 概要
-googleのAPIを使ったニュースアプリ  
-(http://news.google.com/news)  
+googleのAPIを使ったニュースアプリ (http://news.google.com/news)  
 取得したデータをローカルDBに保存し、オフラインでも見れるように  
 
 ## 表示するデータ
