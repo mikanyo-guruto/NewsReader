@@ -1,4 +1,4 @@
-# NewsReader
+# NewsReaderアプリ
 
 ## 概要
 googleのAPIを使ったニュースアプリ (http://news.google.com/news)  
