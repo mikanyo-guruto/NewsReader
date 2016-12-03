@@ -2,6 +2,7 @@
 
 ## 概要
 GoogleAPIを使用してニュースの一覧を取得する  
+  
 Googleニュース : http://news.google.com/news  
 GoogleAPI参考サイト : http://tomehachi.sakura.ne.jp/blog/archives/486  
 
