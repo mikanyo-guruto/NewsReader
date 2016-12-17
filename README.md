@@ -6,10 +6,10 @@ QiitaAPIを使用してニュースの一覧を取得する
 Qiita記事最新の一覧 http://qiita.com/api/v2/items
 
 参考サイト
-Qiita API 公式 
-http://qiita.com/api/v2/docs#get-apiv2items 
-Qiita API v2 の概要 
-http://qiita.com/tag1216/items/b0b90e30c7e581aa2b00 
+Qiita API 公式  
+http://qiita.com/api/v2/docs#get-apiv2items  
+Qiita API v2 の概要  
+http://qiita.com/tag1216/items/b0b90e30c7e581aa2b00  
 
 
 ## 機能
