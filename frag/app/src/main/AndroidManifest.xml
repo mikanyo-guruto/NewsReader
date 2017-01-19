@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.student.newsreader">
+    package="com.example.student.myapplication">
 
     <application
         android:allowBackup="true"
@@ -17,9 +17,4 @@
         </activity>
     </application>
 
-<<<<<<< HEAD
-    <uses-permission android:name="android.permission.INTERNET"/>
-
-=======
->>>>>>> b9e809eaf8c46590f592a866035fea4d5173ffeb
 </manifest>
