@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/NewsReader.iml" filepath="$PROJECT_DIR$/NewsReader.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/NewsReader2.iml" filepath="$PROJECT_DIR$/NewsReader2.iml" />
->>>>>>> b9e809eaf8c46590f592a866035fea4d5173ffeb
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

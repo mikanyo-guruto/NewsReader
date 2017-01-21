@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     android:paddingBottom="0dp"
     android:paddingLeft="2dp"
     android:paddingRight="2dp"
@@ -18,7 +17,6 @@
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <ListView
             android:id="@+id/items_list"
@@ -35,21 +33,4 @@
             <!--android:layout_alignParentStart="true"></LinearLayout>-->
 
     </android.support.v4.widget.SwipeRefreshLayout>
-=======
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.student.newsreader.MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-
-    <ListView android:id="@+id/NewsList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
->>>>>>> b9e809eaf8c46590f592a866035fea4d5173ffeb
 </RelativeLayout>
