@@ -1,8 +1,10 @@
 package com.example.student.newsreader;
 
+import android.app.Fragment;
 import android.content.ClipData;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +12,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.student.newsreader.adapters.ItemsAdapter;
+import com.example.student.newsreader.concern.ItemFragment;
 import com.example.student.newsreader.concern.ItemFragmentStatePagerAdapter;
 import com.example.student.newsreader.concern.QiitaAPI;
 import com.example.student.newsreader.concern.QiitaResponse;
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     ListView mItemsList;
     */
 
+    ListView mItemList;
     ViewPager viewPager;
 
     @Override
@@ -98,13 +103,12 @@ public class MainActivity extends AppCompatActivity {
                 mItemsList.setAdapter(itemsAdapter);
                 */
 
-                // new insert contents
-                viewPager = (ViewPager)findViewById(R.id.viewPager);
-                viewPager.setAdapter(
-                        new ItemFragmentStatePagerAdapter(
-                                getSupportFragmentManager()
-                        )
-                );
+                ArrayList<QiitaResponse> items = response.body();
+                FragmentManager fm = getSupportFragmentManager();
+                ItemFragmentStatePagerAdapter adapter = new ItemFragmentStatePagerAdapter(fm);
+                adapter.setItems(items);
+
+                mItemList.setAdapter(adapter);
             }
 
             @Override

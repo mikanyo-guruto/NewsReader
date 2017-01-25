@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import com.example.student.newsreader.R;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -29,6 +31,7 @@ public class ItemFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private ArrayList<QiitaResponse> fragmentManager;
 
     public ItemFragment() {
         // Required empty public constructor
@@ -65,6 +68,9 @@ public class ItemFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Bundle bundle = getArguments();
+        String title = bundle.getString("title");
+        String desc = bundle.toString("desc");
         return inflater.inflate(R.layout.fragment_item, container, false);
     }
 
@@ -74,7 +80,7 @@ public class ItemFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-
+/*
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -85,11 +91,15 @@ public class ItemFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
-
+*/
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void setFragmentManager(ArrayList<QiitaResponse> fragmentManager) {
+        this.fragmentManager = fragmentManager;
     }
 
     /**

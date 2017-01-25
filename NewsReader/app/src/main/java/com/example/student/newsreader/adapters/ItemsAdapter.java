@@ -18,6 +18,7 @@ import java.util.List;
  */
 
 public class ItemsAdapter extends BaseAdapter {
+
     List<QiitaResponse> items;
     static Context context;
 
@@ -45,16 +46,11 @@ public class ItemsAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        /*
+
         view = layoutInflater.inflate(R.layout.item, parent, false);
 
         ((TextView)view.findViewById(R.id.item_title)).setText(items.get(position).getTitle());
         ((TextView)view.findViewById(R.id.item_desc)).setText(String.valueOf(items.get(position).getDesc()));
-        */
-
-        view = layoutInflater.inflate(R.layout.fragment_item, parent, false);
-
-        ((TextView)view.findViewById(R.id.title)).setText(items.get(position).getTitle());
 
         System.out.println(view);
 
