@@ -24,23 +24,22 @@ import java.util.List;
  * Created by ohgi on 2017/01/21.
  */
 
-public class ItemFragmentStatePagerAdapter extends FragmentStatePagerAdapter implements ListAdapter {
+public class ItemFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
 
-    List<QiitaResponse> mItems;
-    static Context context;
+    private  ArrayList<QiitaResponse> mList;
 
     public ItemFragmentStatePagerAdapter(FragmentManager fm) {
         super(fm);
+        mList = new ArrayList<QiitaResponse>();
     }
 
     @Override
     public Fragment getItem(int position) {
-
-        QiitaResponse item = mItems.get(position);
+        QiitaResponse item = mList.get(position);
 
         Bundle bundle = new Bundle();
-        bundle.putString("title", mItems.get(0).getTitle());
-        bundle.putString("desc", mItems.get(1).getDesc());
+        bundle.putString("title", mList.get(position).getTitle());
+        bundle.putString("desc", mList.get(position).getDesc());
 
         ItemFragment fragment = new ItemFragment();
         fragment.setArguments(bundle);
@@ -48,52 +47,11 @@ public class ItemFragmentStatePagerAdapter extends FragmentStatePagerAdapter imp
         return fragment;
     }
 
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
-
-    @Override
-    public boolean hasStableIds() {
-        return false;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        return 0;
-    }
-
-    @Override
-    public int getViewTypeCount() {
-        return 0;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
-    @Override
     public int getCount() {
-        return 0;
+        return 5;
     }
 
-    public void setItems(ArrayList<QiitaResponse> items) {
-        this.mItems = items;
-    }
-
-    @Override
-    public boolean areAllItemsEnabled() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled(int position) {
-        return false;
+    public void addAll(ArrayList<QiitaResponse> items) {
+        mList.addAll(items);
     }
 }

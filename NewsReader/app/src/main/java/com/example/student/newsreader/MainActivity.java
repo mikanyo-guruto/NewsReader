@@ -45,8 +45,7 @@ public class MainActivity extends AppCompatActivity {
     ListView mItemsList;
     */
 
-    ListView mItemList;
-    ViewPager viewPager;
+    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,12 +102,14 @@ public class MainActivity extends AppCompatActivity {
                 mItemsList.setAdapter(itemsAdapter);
                 */
 
+                mViewPager = (ViewPager)findViewById(R.id.viewPager);
+
                 ArrayList<QiitaResponse> items = response.body();
                 FragmentManager fm = getSupportFragmentManager();
                 ItemFragmentStatePagerAdapter adapter = new ItemFragmentStatePagerAdapter(fm);
-                adapter.setItems(items);
+                adapter.addAll(items);
 
-                mItemList.setAdapter(adapter);
+                mViewPager.setAdapter(adapter);
             }
 
             @Override

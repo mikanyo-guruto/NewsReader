@@ -4,9 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.student.newsreader.R;
 
@@ -67,11 +69,19 @@ public class ItemFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        System.out.println("onCreateView in ");
         // Inflate the layout for this fragment
         Bundle bundle = getArguments();
         String title = bundle.getString("title");
-        String desc = bundle.toString("desc");
-        return inflater.inflate(R.layout.fragment_item, container, false);
+        String desc = bundle.getString("desc");
+
+        View layout = inflater.inflate(R.layout.fragment_item, container, false);
+        TextView titleView = (TextView)layout.findViewById(R.id.title);
+        titleView.setText(title);
+        TextView descView = (TextView)layout.findViewById(R.id.desc);
+        descView.setText(desc);
+
+        return layout;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
