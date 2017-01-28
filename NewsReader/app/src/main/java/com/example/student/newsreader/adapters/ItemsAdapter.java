@@ -18,6 +18,7 @@ import java.util.List;
  */
 
 public class ItemsAdapter extends BaseAdapter {
+
     List<QiitaResponse> items;
     static Context context;
 
@@ -45,6 +46,7 @@ public class ItemsAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
+
         view = layoutInflater.inflate(R.layout.item, parent, false);
 
         ((TextView)view.findViewById(R.id.item_title)).setText(items.get(position).getTitle());
