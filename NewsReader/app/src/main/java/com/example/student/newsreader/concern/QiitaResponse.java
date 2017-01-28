@@ -20,9 +20,7 @@ public class QiitaResponse {
     // TODO: その他params
     //   http://qiita.com/api/v2/docs#%E6%8A%95%E7%A8%BF
 
-    public String getTitle(){
-        return title;
-    }
+    public String getTitle(){ return title; }
 
     public String getDesc(){
         if(body.length() > 140) {
