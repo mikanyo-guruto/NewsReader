@@ -37,9 +37,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
+    /*
     @InjectView(R.id.swipe_refresh)
     SwipeRefreshLayout mSwipeRefresh;
-
+    */
     /*
     @InjectView(R.id.items_list)
     ListView mItemsList;
@@ -53,6 +54,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
+        mViewPager = (ViewPager)findViewById(R.id.viewPager);
+
+        // スワイプ時、更新メソッドを呼ばないように
+        /*
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
+
+            @Override
+            public void onPageSelected(int position) { }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if (state == 2) {
+                    mSwipeRefresh.setEnabled(false);
+                } else if (state == 0) {
+                    mSwipeRefresh.setEnabled(true);
+                }
+            }
+        });
+        */
+
 //  final String[] foods = {"hoge", "fuga", "piyo"};
 //  ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, foods);
 
@@ -61,13 +84,14 @@ public class MainActivity extends AppCompatActivity {
         getItems();
 
         // リストリフレッシュスワイプのリスナーを登録
-        initSwipeRefresh();
+        // initSwipeRefresh();
     }
 
 
     /**
      * リストリフレッシュスワイプのリスナーを登録用メソッド
      */
+    /*
     private void initSwipeRefresh(){
         // mSwipeRefresh.setColorSchemeResources("#4DD0E1", "#00ACC1","#006064");
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -80,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    */
 
     private void getItems(){
         Retrofit retrofit = new Retrofit.Builder()
@@ -92,17 +117,17 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<ArrayList<QiitaResponse>> call, Response<ArrayList<QiitaResponse>> response) {
+                /*
                 if (mSwipeRefresh.isRefreshing()) {
                     mSwipeRefresh.setRefreshing(false);
                 }
+                */
 
                 /*
                 ArrayList<QiitaResponse> items = response.body();
                 ItemsAdapter itemsAdapter = new ItemsAdapter(items, MainActivity.this);
                 mItemsList.setAdapter(itemsAdapter);
                 */
-
-                mViewPager = (ViewPager)findViewById(R.id.viewPager);
 
                 ArrayList<QiitaResponse> items = response.body();
                 // フラグメント設定

@@ -5,9 +5,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.example.student.newsreader.R;
@@ -76,11 +80,15 @@ public class ItemFragment extends Fragment {
         String created_at = bundle.getString("created_at");
 
         View layout = inflater.inflate(R.layout.fragment_item, container, false);
+
         // viewに値をセット
         TextView titleView = (TextView)layout.findViewById(R.id.title);
         titleView.setText(title);
-        TextView descView = (TextView)layout.findViewById(R.id.desc);
-        descView.setText(desc);
+        if(!TextUtils.isEmpty(desc)) {
+            WebView descView = (WebView)layout.findViewById(R.id.desc);
+            descView.getSettings().setJavaScriptEnabled(true);
+            descView.loadDataWithBaseURL(null, desc, "text/html", "UTF-8", null);
+        }
         TextView created_atView = (TextView)layout.findViewById(R.id.created_at);
         created_atView.setText(created_at);
 

@@ -1,6 +1,8 @@
 package com.example.student.newsreader.concern;
 
 import android.app.Notification;
+import android.graphics.drawable.Drawable;
+import android.text.Html;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,7 +42,7 @@ public class QiitaResponse {
             return body.substring(0, 140);
         }
         */
-        return body;
+        return rendered_body;
     }
 
     public String getCreated_at() {
