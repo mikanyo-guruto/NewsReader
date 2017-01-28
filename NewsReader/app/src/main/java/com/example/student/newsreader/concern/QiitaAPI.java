@@ -17,6 +17,7 @@ public interface  QiitaAPI{
     //@GET("/api/v2/items?query=ゆゆ式&per_page=5")
     @GET("/api/v2/items")
     Call<ArrayList<QiitaResponse>> getItems(//@Query("query") String query,
+                                            @Query("page") Integer page,
                                             @Query("per_page") Integer per_page);
 //    void getItems(@Query("query") String query,
 //                  @Query("per_page") Integer per_page,

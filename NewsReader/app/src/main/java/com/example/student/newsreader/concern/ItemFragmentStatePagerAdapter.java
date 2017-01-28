@@ -35,7 +35,6 @@ public class ItemFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        QiitaResponse item = mList.get(position);
 
         Bundle bundle = new Bundle();
         bundle.putString("title", mList.get(position).getTitle());
@@ -48,12 +47,16 @@ public class ItemFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
         return fragment;
     }
 
-    public int getCount() {
-        return 5;
+    public int getCount() { return mList.size(); }
+
+    public void add(QiitaResponse item){
+        mList.add(item);
+        notifyDataSetChanged();
     }
 
     public void addAll(ArrayList<QiitaResponse> items) {
         mList.addAll(items);
+        notifyDataSetChanged();
     }
 
     @Override

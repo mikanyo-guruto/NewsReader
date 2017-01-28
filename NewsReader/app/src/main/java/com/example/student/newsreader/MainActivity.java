@@ -46,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
     ListView mItemsList;
     */
 
+    private int page = 1;
     private ViewPager mViewPager;
+    private ItemFragmentStatePagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,38 +58,36 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager = (ViewPager)findViewById(R.id.viewPager);
 
-        // スワイプ時、更新メソッドを呼ばないように
-        /*
+        // フラグメント設定
+        FragmentManager fm = getSupportFragmentManager();
+        adapter = new ItemFragmentStatePagerAdapter(fm);
+
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
 
             @Override
-            public void onPageSelected(int position) { }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                if (state == 2) {
-                    mSwipeRefresh.setEnabled(false);
-                } else if (state == 0) {
-                    mSwipeRefresh.setEnabled(true);
+            public void onPageSelected(int position) {
+                if(position + 1 == (adapter.getCount() - 3)) {
+                    page++;
+                    getItems(page);
                 }
             }
+
+            @Override
+            public void onPageScrollStateChanged(int state) { }
         });
-        */
+
+        getItems(page);
 
 //  final String[] foods = {"hoge", "fuga", "piyo"};
 //  ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, foods);
 
 //  mItemsList.setAdapter(arrayAdapter);
 
-        getItems();
-
         // リストリフレッシュスワイプのリスナーを登録
         // initSwipeRefresh();
     }
-
-
     /**
      * リストリフレッシュスワイプのリスナーを登録用メソッド
      */
@@ -106,14 +106,15 @@ public class MainActivity extends AppCompatActivity {
     }
     */
 
-    private void getItems(){
+    private void getItems(int page){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://qiita.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+        page++;
         QiitaAPI service = QiitaService.get();
-        service.getItems(5).enqueue(new Callback<ArrayList<QiitaResponse>>() {
+        service.getItems(page, 10).enqueue(new Callback<ArrayList<QiitaResponse>>() {
 
             @Override
             public void onResponse(Call<ArrayList<QiitaResponse>> call, Response<ArrayList<QiitaResponse>> response) {
@@ -122,19 +123,13 @@ public class MainActivity extends AppCompatActivity {
                     mSwipeRefresh.setRefreshing(false);
                 }
                 */
-
-                /*
                 ArrayList<QiitaResponse> items = response.body();
-                ItemsAdapter itemsAdapter = new ItemsAdapter(items, MainActivity.this);
-                mItemsList.setAdapter(itemsAdapter);
-                */
-
-                ArrayList<QiitaResponse> items = response.body();
-                // フラグメント設定
-                FragmentManager fm = getSupportFragmentManager();
-                ItemFragmentStatePagerAdapter adapter = new ItemFragmentStatePagerAdapter(fm);
                 adapter.addAll(items);
-
+                /*
+                for(QiitaResponse r : items){
+                    adapter.add(r);
+                }
+                */
                 mViewPager.setAdapter(adapter);
             }
 
