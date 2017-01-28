@@ -1,10 +1,14 @@
 package com.example.student.newsreader.concern;
 
+import android.app.Notification;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.AbstractMap;
 import java.util.Date;
 import java.util.TimeZone;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by ohgi on 2016/12/17.
@@ -40,12 +44,13 @@ public class QiitaResponse {
     }
 
     public String getCreated_at() {
-        /*
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Tokyo"));
+        String date = created_at;
+        Pattern p = Pattern.compile("(.*)T");
+        Matcher m = p.matcher(date);
+        if(m.find()) {
+            date = m.group(1);
+        }
 
-        return sdf.format(created_at);
-        */
-        return created_at;
+        return date;
     }
 }
