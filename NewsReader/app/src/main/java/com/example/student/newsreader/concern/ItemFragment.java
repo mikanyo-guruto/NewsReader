@@ -69,17 +69,20 @@ public class ItemFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        System.out.println("onCreateView in ");
         // Inflate the layout for this fragment
         Bundle bundle = getArguments();
         String title = bundle.getString("title");
         String desc = bundle.getString("desc");
+        String created_at = bundle.getString("created_at");
 
         View layout = inflater.inflate(R.layout.fragment_item, container, false);
+        // viewに値をセット
         TextView titleView = (TextView)layout.findViewById(R.id.title);
         titleView.setText(title);
         TextView descView = (TextView)layout.findViewById(R.id.desc);
         descView.setText(desc);
+        TextView created_atView = (TextView)layout.findViewById(R.id.created_at);
+        created_atView.setText(created_at);
 
         return layout;
     }

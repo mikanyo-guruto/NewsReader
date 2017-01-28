@@ -40,6 +40,7 @@ public class ItemFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
         Bundle bundle = new Bundle();
         bundle.putString("title", mList.get(position).getTitle());
         bundle.putString("desc", mList.get(position).getDesc());
+        bundle.putString("created_at", mList.get(position).getCreated_at());
 
         ItemFragment fragment = new ItemFragment();
         fragment.setArguments(bundle);
@@ -53,5 +54,10 @@ public class ItemFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
 
     public void addAll(ArrayList<QiitaResponse> items) {
         mList.addAll(items);
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return "Page" + (position + 1);
     }
 }

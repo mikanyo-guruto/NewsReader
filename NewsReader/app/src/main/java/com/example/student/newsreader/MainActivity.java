@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 mViewPager = (ViewPager)findViewById(R.id.viewPager);
 
                 ArrayList<QiitaResponse> items = response.body();
+                // フラグメント設定
                 FragmentManager fm = getSupportFragmentManager();
                 ItemFragmentStatePagerAdapter adapter = new ItemFragmentStatePagerAdapter(fm);
                 adapter.addAll(items);
