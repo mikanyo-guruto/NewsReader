@@ -3,6 +3,7 @@ package com.example.student.newsreader;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.ClipData;
+import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -36,7 +38,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Runnable{
 
     /*
     @InjectView(R.id.swipe_refresh)
@@ -46,9 +48,8 @@ public class MainActivity extends AppCompatActivity {
     @InjectView(R.id.items_list)
     ListView mItemsList;
     */
-
-    private ProgressDialog progressDialog;
-    Thread thread;
+    public ProgressDialog mProgressDialog;
+    public Thread mThread;
     private int page = 1;
     private ViewPager mViewPager;
     private ItemFragmentStatePagerAdapter adapter;
@@ -67,7 +68,10 @@ public class MainActivity extends AppCompatActivity {
         final FragmentManager fm = getSupportFragmentManager();
         adapter = new ItemFragmentStatePagerAdapter(fm);
 
+        final Context context = this;
+
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
 
@@ -76,7 +80,13 @@ public class MainActivity extends AppCompatActivity {
                 if(position + 1 == (adapter.getCount() - 3)) {
                     page++;
                     tmpPosition = position;
-                    getItems(page);
+
+                    mProgressDialog = new ProgressDialog(context);
+                    mProgressDialog.setMessage("読み込み中");
+                    mProgressDialog.show();
+
+                    mThread = new Thread((Runnable) context);
+                    mThread.start();
                 }
             }
 
@@ -140,6 +150,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void run() {
+        Log.d("debug", "in");
+        getItems(page);
+        mProgressDialog.dismiss();
     }
 
 //    if (mSwipeRefresh.isRefreshing()) {
