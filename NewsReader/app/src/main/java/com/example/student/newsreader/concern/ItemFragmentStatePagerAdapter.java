@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.util.SparseArrayCompat;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,15 +28,16 @@ import java.util.List;
 public class ItemFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
 
     private  ArrayList<QiitaResponse> mList;
+    private int count;
 
     public ItemFragmentStatePagerAdapter(FragmentManager fm) {
         super(fm);
         mList = new ArrayList<QiitaResponse>();
+        count = 1;
     }
 
     @Override
     public Fragment getItem(int position) {
-
         Bundle bundle = new Bundle();
         bundle.putString("title", mList.get(position).getTitle());
         bundle.putString("desc", mList.get(position).getDesc());
@@ -56,7 +58,6 @@ public class ItemFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
 
     public void addAll(ArrayList<QiitaResponse> items) {
         mList.addAll(items);
-        notifyDataSetChanged();
     }
 
     @Override

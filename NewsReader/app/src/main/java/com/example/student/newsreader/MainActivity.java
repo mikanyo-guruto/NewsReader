@@ -1,6 +1,7 @@
 package com.example.student.newsreader;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
@@ -46,20 +47,24 @@ public class MainActivity extends AppCompatActivity {
     ListView mItemsList;
     */
 
+    private ProgressDialog progressDialog;
+    Thread thread;
     private int page = 1;
     private ViewPager mViewPager;
     private ItemFragmentStatePagerAdapter adapter;
+    private int tmpPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
+        tmpPosition = 0;
 
         mViewPager = (ViewPager)findViewById(R.id.viewPager);
 
         // フラグメント設定
-        FragmentManager fm = getSupportFragmentManager();
+        final FragmentManager fm = getSupportFragmentManager();
         adapter = new ItemFragmentStatePagerAdapter(fm);
 
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -70,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 if(position + 1 == (adapter.getCount() - 3)) {
                     page++;
+                    tmpPosition = position;
                     getItems(page);
                 }
             }
@@ -125,12 +131,8 @@ public class MainActivity extends AppCompatActivity {
                 */
                 ArrayList<QiitaResponse> items = response.body();
                 adapter.addAll(items);
-                /*
-                for(QiitaResponse r : items){
-                    adapter.add(r);
-                }
-                */
                 mViewPager.setAdapter(adapter);
+                mViewPager.setCurrentItem(tmpPosition);
             }
 
             @Override

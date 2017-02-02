@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.student.newsreader.R;
@@ -101,18 +102,18 @@ public class ItemFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-/*
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
-        } else {
+        }/* else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
-        }
+        }*/
     }
-*/
+
     @Override
     public void onDetach() {
         super.onDetach();
