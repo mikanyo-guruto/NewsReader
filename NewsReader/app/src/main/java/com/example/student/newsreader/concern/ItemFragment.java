@@ -93,7 +93,6 @@ public class ItemFragment extends Fragment {
             descView.getSettings().setUseWideViewPort( true );
             descView.getSettings().setSupportZoom(true);
             descView.getSettings().setBuiltInZoomControls(true);
-            descView.getSettings().setDisplayZoomControls(false);
             descView.loadDataWithBaseURL(null, desc, "text/html", "UTF-8", null);
         }
         TextView created_atView = (TextView)layout.findViewById(R.id.created_at);

@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements Runnable{
 
                     mThread = new Thread((Runnable) context);
                     mThread.start();
-
                 }
             }
 
@@ -145,6 +144,9 @@ public class MainActivity extends AppCompatActivity implements Runnable{
                 adapter.addAll(items);
                 mViewPager.setAdapter(adapter);
                 mViewPager.setCurrentItem(tmpPosition);
+                if(tmpPosition > 0) {
+                    mProgressDialog.dismiss();
+                }
             }
 
             @Override
@@ -156,9 +158,7 @@ public class MainActivity extends AppCompatActivity implements Runnable{
 
     @Override
     public void run() {
-        Log.d("debug", "in");
         getItems(page);
-        mProgressDialog.dismiss();
     }
 
 //    if (mSwipeRefresh.isRefreshing()) {
