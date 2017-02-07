@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements Runnable{
 
                     mThread = new Thread((Runnable) context);
                     mThread.start();
+
                 }
             }
 

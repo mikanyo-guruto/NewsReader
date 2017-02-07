@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
@@ -88,6 +89,11 @@ public class ItemFragment extends Fragment {
         if(!TextUtils.isEmpty(desc)) {
             WebView descView = (WebView)layout.findViewById(R.id.desc);
             descView.getSettings().setJavaScriptEnabled(true);
+            descView.getSettings().setLoadWithOverviewMode( true );
+            descView.getSettings().setUseWideViewPort( true );
+            descView.getSettings().setSupportZoom(true);
+            descView.getSettings().setBuiltInZoomControls(true);
+            descView.getSettings().setDisplayZoomControls(false);
             descView.loadDataWithBaseURL(null, desc, "text/html", "UTF-8", null);
         }
         TextView created_atView = (TextView)layout.findViewById(R.id.created_at);
